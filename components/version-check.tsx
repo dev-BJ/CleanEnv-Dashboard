@@ -12,10 +12,10 @@ export function VersionCheck({currentVersion, device_ip}: {currentVersion?: stri
         try {
             const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'version.txt')
             const data = await response.text()
-            // console.log(data)
+            console.log(data)
             if(data.includes('404')) return
             setVersion(data)
-            let version_check = parseVersion(data) === parseVersion(currentVersion || '0.0.0');
+            let version_check = parseVersion(data) >= parseVersion(currentVersion || '0.0.0');
             if (!version_check) {
                 toast({
                     title: 'New version available',

@@ -15,7 +15,7 @@ export function VersionCheck({currentVersion, device_ip}: {currentVersion?: stri
             console.log(data)
             if(data.includes('404')) return
             setVersion(data)
-            let version_check = parseVersion(data) >= parseVersion(currentVersion || '0.0.0');
+            let version_check = parseVersion(data) === parseVersion(currentVersion || '0.0.0');
             if (!version_check) {
                 toast({
                     title: 'New version available',
@@ -80,7 +80,7 @@ export function VersionCheck({currentVersion, device_ip}: {currentVersion?: stri
                                 <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
                                 <span>Download</span>
                             </Button>
-                            <a className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow text-center" href={`http://${device_ip || '0.0.0.0'}:443`} target="_blank"><span>OTA Update UI</span></a>
+                            <a className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow text-center" href={`http://${device_ip || '0.0.0.0'}:80`} target="_blank"><span>OTA Update UI</span></a>
                         </>
                     )}
                 </p>

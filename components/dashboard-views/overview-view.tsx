@@ -114,8 +114,8 @@ export function OverviewView({
             </div>
             <p className="text-xs text-muted-foreground mt-1">{isConnected ? "Receiving data" : "No connection"}</p>
             <div className="text-md font-bold flex flex-col gap-2 mt-1">
-              <p>Device IP address: {latestData?.ip ? latestData.ip : "unknown"}</p>
-              <p>Device Firmware version: {latestData?.firmware_version ? latestData.firmware_version : "0.0.0"}</p>
+              <p>IP address: {latestData?.ip ? latestData.ip : "0.0.0.0"}</p>
+              <p>Firmware version: {latestData?.firmware_version ? latestData.firmware_version : "0.0.0"}</p>
             </div>
           </CardContent>
         </Card>

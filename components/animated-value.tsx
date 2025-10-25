@@ -12,7 +12,7 @@ interface AnimatedValueProps {
 }
 
 export function AnimatedValue({ value, unit, decimals = 1, className, animate = true }: AnimatedValueProps) {
-  const [displayValue, setDisplayValue] = useState(value)
+  const [displayValue, setDisplayValue] = useState(Number(value))
   const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {

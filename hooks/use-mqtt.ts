@@ -151,6 +151,9 @@ export function useMqtt() {
             firmware_version: data.ver || "0.0.0",
           }
 
+          // console.log("Sensor Data: ", data)
+          // console.log("Sensor Readings: ", sensorReading)
+
           const now = Date.now()
           setLatestData(sensorReading)
           setLastUpdateTime(now)

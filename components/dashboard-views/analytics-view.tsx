@@ -99,7 +99,7 @@ export function AnalyticsView({ sensorData, latestData }: AnalyticsViewProps) {
             value={latestData.battery_current}
             min={0}
             max={5}
-            title="Load Current"
+            title="Battery Current"
             unit="A"
             icon={<Zap className="h-5 w-5" />}
             thresholds={{

@@ -7,9 +7,10 @@ export function useBLE() {
   const [isConnected, setIsConnected] = useState<boolean>(false);
 
   // Check if Web Bluetooth API is available
-  const isAvailable = useCallback(() => {
-    return !!(navigator && (navigator as any).bluetooth);
-  }, []);
+  // const isAvailable = useCallback(() => {
+  //   if (typeof navigator === "undefined") return false;
+  //   return Boolean((navigator as any)?.bluetooth);
+  // }, []);
 
   // Request BLE device
   const requestDevice = useCallback(async (filters?: any[]) => {
@@ -103,7 +104,7 @@ export function useBLE() {
     device,
     server,
     error,
-    isAvailable,
+    // isAvailable,
     isConnected,
     requestDevice,
     connect,

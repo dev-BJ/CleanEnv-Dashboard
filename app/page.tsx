@@ -18,7 +18,7 @@ export default function IoTDashboard() {
       device,
       server,
       error: bleError,
-      isAvailable,
+      // isAvailable,
       isConnected: isBLEConnected,
       requestDevice,
       connect: connectBLE,
@@ -90,7 +90,7 @@ export default function IoTDashboard() {
               server={server}
               device={device}
               error={bleError}
-              isAvailable={isAvailable}
+              // isAvailable={isAvailable}
               isConnected={isBLEConnected}
               requestDevice={requestDevice}
               connect={connectBLE}

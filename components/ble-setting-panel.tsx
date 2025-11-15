@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 // import {Loading}
 import { AlertCircle, Wifi, WifiOff } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useWebBLE } from "@/hooks/use-WebBLE";
 
 const SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 const CHARACTERISTIC_UUID_SSID = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
@@ -20,37 +21,16 @@ const CHARACTERISTIC_UUID_GPRS_PASS = "beb5483e-36e1-4688-b7f5-ea07361b26b9"
 
 type BLESettingPanelProps = ReturnType<typeof useBLE>
 
-export function BLESettingPanel({server, device, error, isAvailable, isConnected, requestDevice, connect, readCharacteristic, writeCharacteristic, disconnect, setError}: BLESettingPanelProps) {
+export function BLESettingPanel({server, device, error, isConnected, requestDevice, connect, readCharacteristic, writeCharacteristic, disconnect, setError}: BLESettingPanelProps) {
   const [ssid, setSsid] = useState("")
   const [apn, setApn] = useState("")
   const [password, setPassword] = useState("")
   const [user, setUser] = useState("")
   const [pass, setPass] = useState("")
   const [isConnecting, setIsConnecting] = useState(false)
-  const [bleAvailable, setBleAvailable] = useState(false);
-  const [btPermissionState, setBtPermissionState] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const { supported: browserSupported, reason: btPermissionState} = useWebBLE();
 
-  useEffect(() => {
-    let isMounted = true;
-    const checkAvailability = isAvailable(); // isAvailable is a function, call it
-    if (isMounted) {
-      setBleAvailable(checkAvailability);
-
-      if (checkAvailability && navigator.permissions) {
-        navigator.permissions.query({ name: 'bluetooth' as PermissionName })
-          .then((result) => {
-            if (isMounted) setBtPermissionState(result.state);
-            console.log('Bluetooth permission state has changed to ', result.state);
-          })
-        .catch((error) => {
-          console.error('Error checking Bluetooth permission:', error);
-        });
-      }
-    }
-
-    return () => { isMounted = false; };
-  }, []);
 
   const handleConnect = async () => {
     setIsConnecting(true)

@@ -29,7 +29,7 @@ export function BLESettingPanel({server, device, error, isConnected, requestDevi
   const [pass, setPass] = useState("")
   const [isConnecting, setIsConnecting] = useState(false)
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const { supported: browserSupported, reason: btPermissionState} = useWebBLE();
+  const { supported: bleAvailable, reason: btPermissionState} = useWebBLE();
 
 
   const handleConnect = async () => {
@@ -145,7 +145,7 @@ export function BLESettingPanel({server, device, error, isConnected, requestDevi
     );
   }
 
-  if (btPermissionState === 'denied') {
+  if (btPermissionState === 'permission_denied') {
     return (
       <Alert variant="destructive">
         <AlertCircle className="h-4 w-4" />
